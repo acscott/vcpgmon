@@ -6,7 +6,7 @@ If you wanted to find out the network latency between your client and PostgreSQL
 We demonstrate inferring network latency from client to PostgreSQL server written in golang.  Utilizes *pcap*
 but *pfring* is preferable due to its performance.  *pfring* is not available on all systems.
 
-NOTE: You need root access to listen in on packets.  
+NOTE: You need root access to listen in on packets.  For this version of our tool we require a quiet system with only 1 client talking to the server.
 
 
 ###Given:
@@ -24,7 +24,7 @@ Between 2 and 3 we have:
    Tc1 = Time for server to send 1 or more packets to client
    Ta = Time for client to send back a tcp ACK
 ```
-Say we use a mimimal query to sent from the Client to the Server.
+Say we use a mimimal query to send from the Client to the Server.
 `
     Select 1;
 `
@@ -46,13 +46,13 @@ We run another 3 more Selects.
 
 ![screencap3](./run2.jpg)
 
-And we successfully are measuring the artifically induced additional 100ms latency.  
+And we successfully measured the artifically induced, additional 100ms latency.  
 
-NOTE: Don't forget to put back your client's latency!
+NOTE: Don't forget to undo your tc command if you used it to add delay as in our example.
 ex: ```tc qdisc del dev wlp3s0 root```
 
 #Other notes
 * We can create a tcpdump command and an awk command to perform a similar operation without the need for Golang.  This tool is for a larger project for monitoring.
 * The further your client is away from your server in physical space, the higher the latency will be.  
-* If you run 100 queries to do one user interaction on your application a 100 ms increase in latency will add (100ms x 100) **10 seconds** to your response time!
-* 
+* If you run 100 queries to do one user interaction on your application, a 100 ms increase in latency adds (100ms x 100) **10 seconds** to your response time!
+
