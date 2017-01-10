@@ -32,6 +32,7 @@ Then,  #1, #2, and #3 can be completed in one packet each.  **Tc1** includes the
 
 ##Example Run
 ![screencap](./run1.jpg)
+
 You must run as root hence the sudo.  We listen on the network interface named enp0s3 over port 5432. (use sudo ifconfig -a to list your interfaces).   
 
 Eace `Select 1;` generated 3 packets.  And we have 3 select tests here.  We display the source and destination IP address for each packet.  And when the tool detects a  tcp ACK packet (that doesn't have Application layer data, the same as saying there are no PostgreSQL protocol messages), it subtracts its time from the prior packet time.
@@ -40,7 +41,7 @@ The first test yields a latency of 76 microseconds (µs).  We keep a running ave
 
 Next test, let's add a network delay on the client using the `tc`, traffic control command.
 
-![screencap2](./tc.jpg).
+![screencap2](./tc.jpg)
 
 We run another 3 more Selects.
 
