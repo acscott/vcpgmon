@@ -28,7 +28,7 @@ Say we use a mimimal query to send from the Client to the Server.
 `
     Select 1;
 `
-Then,  #1, #2, and #3 can be completed in one packet each.  **Tc1** includes the network travel time **and** the OS time to generate a network packet.  So it's not a pure measure as though you were measuring at a router.  But you can use this tool to **compare network latency between other systems** Just keep in mind we are assuming that OS time to generate a network packet is the same between your systems.
+Then, (1.), (2.), and (3.) above can be completed in one packet each.  **Tc1** includes the network travel time **and** the OS time to generate a network packet.  So it's not a pure measure as though you were measuring at a router. Just keep in mind if we can safely assume that OS time to generate a network packet is the same between your systems, you can use this tool to **compare network latency between other systems**  such as Your DEV and TST systems.  You may want to compare your system hosted by one provider over another.  
 
 ##Example Run
 ![screencap](./run1.jpg)
