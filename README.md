@@ -35,7 +35,7 @@ Then, (1.), (2.), and (3.) above can be completed in one packet each.  **Tc1** i
 
 You must run as root hence the sudo.  We listen on the network interface named enp0s3 over port 5432. (use sudo ifconfig -a to list your interfaces).   
 
-Eace `Select 1;` generated 3 packets.  And we have 3 select tests here.  We display the source and destination IP address for each packet.  And when the tool detects a  tcp ACK packet (that doesn't have Application layer data, the same as saying there are no PostgreSQL protocol messages), it subtracts its time from the prior packet time.
+Each `Select 1;` generated 3 packets.  And we have 3 select tests here.  We display the source and destination IP address for each packet.  And when the tool detects a  tcp ACK packet (that doesn't have Application layer data, the same as saying there are no PostgreSQL protocol messages), it subtracts its time from the prior packet time.
 
 The first test yields a latency of 76 microseconds (µs).  We keep a running average (76µs first trial) and a sample standard deviation (0.00µs first trial) as well.  There will alwys be variance.  In our test here this is performed on a Virtual Box CentOS 7 server running on top of Ubuntu acting as the client.
 
@@ -55,5 +55,5 @@ ex: ```tc qdisc del dev wlp3s0 root```
 #Other notes
 * We can create a tcpdump command and an awk command to perform a similar operation without the need for Golang.  This tool is for a larger project for monitoring.
 * The further your client is away from your server in physical space, the higher the latency will be.  
-* If you run 100 queries to do one user interaction on your application, a 100 ms increase in latency adds (100ms x 100) **10 seconds** to your response time!
+* If you run 100 queries to do one user interaction on your application, a 100 ms increase in latency adds (100ms x 100 x (1 seconds/1000ms)) **10 seconds** to your response time!
 
